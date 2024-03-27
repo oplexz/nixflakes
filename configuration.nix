@@ -113,33 +113,41 @@
       # };
     };
     home.packages = with pkgs; [
-      google-chrome
-      nil
-      alejandra
-      telegram-desktop
-      brightnessctl
-      nitch
-      pavucontrol
-      playerctl
-      todoist
-      unzip
-      wget
-      pulseaudio
-      hyprlock
-      mako
-      tofi
-      hyprpaper
-      grim
-      # swww
-      # hyprpicker.packages.${system}.default
+      # Core
       lxqt.lxqt-policykit
-      slurp
-      wl-clipboard
-      # Required if applications are having trouble opening links
       xdg-utils
       xfce.thunar
       xfce.tumbler
+      unzip
+      wget
+
+      # Utils
+      brightnessctl
+      pulseaudio
+      pavucontrol
+      playerctl
+      wl-clipboard
+      mako
+      libnotify
+      tofi
+      grim
+      slurp
+      nitch
+      hyprlock
+      hypridle
+      hyprpaper
+      # hyprpicker
+      # swww
+
+      # Apps
+      google-chrome
+      telegram-desktop
+      # todoist
+
+      # Dev
       pgadmin4-desktopmode
+      nil
+      alejandra
     ];
   };
 
