@@ -32,6 +32,18 @@
           ./configuration.nix
         ];
       };
+      aeschylus = nixpkgs.lib.nixosSystem {
+        specialArgs =
+          {
+            username = "oplexz";
+            hostName = "aeschylus";
+            system = "x86_64-linux";
+          }
+          // attrs;
+        modules = [
+          ./configuration.nix
+        ];
+      };
     };
 
     devShells = forAllSystems (system: let
