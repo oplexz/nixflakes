@@ -376,6 +376,8 @@
       pgadmin4-desktopmode
       nil
       alejandra
+      nodejs_21
+      python3
     ];
   };
 
