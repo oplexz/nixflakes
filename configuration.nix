@@ -47,6 +47,14 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    zip
+    unzip
+    wget
+    jq
+    openvpn3
+  ];
+
   fonts = {
     packages = with pkgs; [
       monaspace
@@ -346,8 +354,6 @@
       xdg-utils
       xfce.thunar
       xfce.tumbler
-      unzip
-      wget
 
       # Utils
       brightnessctl
