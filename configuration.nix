@@ -1,15 +1,15 @@
 {
   home-manager,
   pkgs,
-  hostName,
+  hostname,
   username,
   ...
 }: {
   # region Core settings
   imports = [
     home-manager.nixosModules.default
-    ./hosts/${hostName}
-    ./users/${username}
+    ./nixos/hosts/${hostname}
+    ./nixos/users/${username}
   ];
 
   nix = {
@@ -564,7 +564,7 @@
       enable = true;
       wifi.powersave = true;
     };
-    inherit hostName;
+    hostName = hostname;
   };
 
   security.rtkit.enable = true;

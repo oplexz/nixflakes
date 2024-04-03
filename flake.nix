@@ -24,7 +24,7 @@
         specialArgs =
           {
             username = "oplexz";
-            hostName = "gbu-pc3";
+            hostname = "gbu-pc3";
             system = "x86_64-linux";
           }
           // attrs;
@@ -36,7 +36,7 @@
         specialArgs =
           {
             username = "oplexz";
-            hostName = "aeschylus";
+            hostname = "aeschylus";
             system = "x86_64-linux";
           }
           // attrs;
