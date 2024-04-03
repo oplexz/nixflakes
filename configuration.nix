@@ -74,7 +74,6 @@
   services = {
     xserver = {
       xkb.layout = "us,ru";
-      xkb.variant = "";
     };
 
     blueman.enable = true;
