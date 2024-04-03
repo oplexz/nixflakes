@@ -14,18 +14,12 @@
   ];
 
   nix = {
-    # TODO: What does this do?
-    # nixPath = ["nixpkgs=/run/current-system/nixpkgs"];
     settings.experimental-features = ["nix-command" "flakes"];
   };
 
   nixpkgs.config.allowUnfree = true;
 
   system = {
-    # TODO: What does this do?
-    # extraSystemBuilderCmds = ''
-    #   ln -sv ${pkgs.path} $out/nixpkgs
-    # '';
     stateVersion = "23.11";
   };
   # endregion
@@ -33,6 +27,30 @@
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
+  };
+
+  services = {
+    # blueman.enable = true;
+
+    gnome.gnome-keyring.enable = true;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+
+    greetd = {
+      enable = true;
+      restart = false;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --asterisks --greeting 'npuBeT nyncuk' --time --cmd Hyprland";
+          user = username;
+        };
+      };
   };
 
   security = {
@@ -68,31 +86,7 @@
     };
   };
 
-  hardware.bluetooth.enable = true;
-
-  services = {
-    blueman.enable = true;
-
-    gnome = {gnome-keyring.enable = true;};
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
-
-    greetd = {
-      enable = true;
-      restart = false;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --asterisks --greeting 'npuBeT nyncuk' --time --cmd Hyprland";
-          user = username;
-        };
-      };
-    };
+    # hardware.bluetooth.enable = true;
 
     resolved = {
       enable = true;
