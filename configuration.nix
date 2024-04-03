@@ -51,22 +51,22 @@
           user = username;
         };
       };
-  };
-
-  security = {
-    rtkit.enable = true;
-    pam.services.login.enableGnomeKeyring = true;
-    polkit = {
-      enable = true;
-      debug = true;
-      extraConfig = ''
-        /* Log authorization checks. */
-        polkit.addRule(function(action, subject) {
-          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-        });
-      '';
     };
-  };
+
+    security = {
+      rtkit.enable = true;
+      pam.services.login.enableGnomeKeyring = true;
+      polkit = {
+        enable = true;
+        debug = true;
+        extraConfig = ''
+          /* Log authorization checks. */
+          polkit.addRule(function(action, subject) {
+            polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+          });
+        '';
+      };
+    };
 
   fonts = {
     packages = with pkgs; [
