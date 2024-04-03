@@ -36,6 +36,8 @@
   };
 
   security = {
+    rtkit.enable = true;
+    pam.services.login.enableGnomeKeyring = true;
     polkit = {
       enable = true;
       debug = true;
@@ -110,7 +112,6 @@
     hostName = hostname;
   };
 
-  security.rtkit.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
@@ -118,8 +119,6 @@
     sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
     sessionVariables.NIXOS_OZONE_WL = "1";
   };
-
-  security.pam.services.login.enableGnomeKeyring = true;
 
   xdg.portal = {
     enable = true;
