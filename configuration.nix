@@ -10,6 +10,7 @@
     ./nixos/users/${username}
     ./home-manager/users/${username}
     ./programs
+    ./l18n
   ];
 
   nix = {
@@ -65,17 +66,9 @@
     };
   };
 
-  time.timeZone = "Europe/Moscow";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
   hardware.bluetooth.enable = true;
 
   services = {
-    xserver = {
-      xkb.layout = "us,ru";
-    };
-
     blueman.enable = true;
 
     gnome = {gnome-keyring.enable = true;};
