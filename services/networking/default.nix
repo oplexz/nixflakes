@@ -17,4 +17,6 @@
     };
     hostName = hostname;
   };
+
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
