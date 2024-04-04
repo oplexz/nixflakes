@@ -11,6 +11,7 @@
     ./home-manager/users/${username}
     ./programs
     ./l18n
+    ./services
   ];
 
   nix = {
@@ -31,42 +32,21 @@
 
   services = {
     # blueman.enable = true;
-
-    gnome.gnome-keyring.enable = true;
-
-    pipewire = {
+  };
+  # hardware.bluetooth.enable = true;
+  security = {
+    rtkit.enable = true;
+    polkit = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
+      debug = true;
+      extraConfig = ''
+        /* Log authorization checks. */
+        polkit.addRule(function(action, subject) {
+          polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+        });
+      '';
     };
-
-    greetd = {
-      enable = true;
-      restart = false;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --asterisks --greeting 'npuBeT nyncuk' --time --cmd Hyprland";
-          user = username;
-        };
-      };
-    };
-
-    security = {
-      rtkit.enable = true;
-      pam.services.login.enableGnomeKeyring = true;
-      polkit = {
-        enable = true;
-        debug = true;
-        extraConfig = ''
-          /* Log authorization checks. */
-          polkit.addRule(function(action, subject) {
-            polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-          });
-        '';
-      };
-    };
+  };
 
   fonts = {
     packages = with pkgs; [
@@ -85,29 +65,6 @@
       emoji = ["Noto Color Emoji"];
     };
   };
-
-    # hardware.bluetooth.enable = true;
-
-    resolved = {
-      enable = true;
-    };
-
-    tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
-    };
-  };
-
-  networking = {
-    networkmanager = {
-      enable = true;
-      wifi.powersave = true;
-    };
-    hostName = hostname;
-  };
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
 
   environment = {
     sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
