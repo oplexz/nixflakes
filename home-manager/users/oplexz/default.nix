@@ -303,9 +303,9 @@
       nitch
       hyprlock
       hypridle
-      hyprpaper
+      # hyprpaper
       # hyprpicker
-      # swww
+      swww
 
       # Apps
       google-chrome
