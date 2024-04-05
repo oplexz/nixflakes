@@ -39,10 +39,10 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
-      plugins = [
-        # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-        # ...
-      ];
+      # plugins = [
+      #   inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      #   ...
+      # ];
 
       settings = {
         # https://wiki.hyprland.org/Configuring/Monitors/
@@ -52,10 +52,8 @@
         "$mod" = "SUPER";
         "$terminal" = "foot";
         "$fileManager" = "thunar";
-        # $menu = wofi --show drun
         "$menu" = "tofi-run | xargs hyprctl dispatch exec";
-        # $screenshot = grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png
-        "$screenshot" = "slurp | grim -g - - | wl-copy";
+        "$screenshot" = "grimblast --freeze copy area";
 
         exec-once = "hyprpaper & mako & lxqt-policykit-agent & dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
         # endregion
@@ -504,41 +502,51 @@
       '';
     };
     home.packages = with pkgs; [
-      # Core
+      # LXQt and Xfce packages
       lxqt.lxqt-policykit
       xdg-utils
       xfce.thunar
       xfce.tumbler
 
-      # Utils
+      # Audio and notification packages
       brightnessctl
       pulseaudio
       pavucontrol
       playerctl
-      wl-clipboard
       mako
       libnotify
       tofi
+
+      # Screenshot and clipboard packages
       grim
       slurp
-      nitch
+      wl-clipboard-rs
+      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+
+      # Hypr-related packages
       hyprlock
       hypridle
       # hyprpaper
-      # hyprpicker
+      inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
       swww
 
-      # Apps
+      # Applications
       google-chrome
       telegram-desktop
+      vencord
+      pgadmin4-desktopmode
       # todoist
 
-      # Dev
-      pgadmin4-desktopmode
+      # Nix-related packages
       nil
       alejandra
+
+      # Development packages
       nodejs_21
       python3
+
+      # Miscellaneous packages
+      nitch
     ];
   };
 }
