@@ -30,7 +30,6 @@
         executable = true;
       };
 
-      # ".config/hypr/hyprland.conf".source = ../../../config/hypr/desktop/hyprland.conf;
       ".config/mako/config".source = ../../../config/mako/config;
       ".config/tofi/config".source = ../../../config/tofi/config;
     };
