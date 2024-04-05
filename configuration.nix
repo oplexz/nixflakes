@@ -8,7 +8,8 @@
   imports = [
     ./nixos/hosts/${hostname}
     ./nixos/users/${username}
-    ./home-manager
+    ./home.nix
+    # ./home-manager
     ./programs
     ./l18n
     ./services

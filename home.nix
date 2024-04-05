@@ -1,9 +1,16 @@
 {
+  username,
   inputs,
   pkgs,
-  username,
   ...
 }: {
+  imports = [
+    inputs.home-manager.nixosModules.default
+    # inputs.hyprland.homeManagerModules.default
+  ];
+
+  home-manager.useGlobalPkgs = true;
+
   home-manager.users.${username} = _: {
     home.stateVersion = "23.11";
 
@@ -14,20 +21,20 @@
     gtk.theme.package = pkgs.adw-gtk3;
 
     home.file = {
-      ".config/foot/foot.ini".source = ../../../config/foot/foot.ini;
+      ".config/foot/foot.ini".source = ./config/foot/foot.ini;
 
       ".config/hypr/vol.sh" = {
-        source = ../../../scripts/vol.sh;
+        source = ./scripts/vol.sh;
         executable = true;
       };
 
       ".config/hypr/toggle_waybar.sh" = {
-        source = ../../../scripts/toggle_waybar.sh;
+        source = ./scripts/toggle_waybar.sh;
         executable = true;
       };
 
-      ".config/mako/config".source = ../../../config/mako/config;
-      ".config/tofi/config".source = ../../../config/tofi/config;
+      ".config/mako/config".source = ./config/mako/config;
+      ".config/tofi/config".source = ./config/tofi/config;
     };
 
     wayland.windowManager.hyprland = {
