@@ -1,15 +1,11 @@
 {
-  home-manager,
+  inputs,
   pkgs,
   username,
   ...
 }: {
-  imports = [
-    home-manager.nixosModules.default
-  ];
   home-manager.users.${username} = _: {
     home.stateVersion = "23.11";
-    nixpkgs.config.allowUnfree = true;
 
     gtk.enable = true;
     gtk.cursorTheme.name = "Adwaita";
