@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     zip
     unzip
@@ -11,7 +15,12 @@
     git.enable = true;
     mtr.enable = true;
     ssh.startAgent = true;
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      # xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
+
     dconf.enable = true;
     gnupg.agent.enable = true;
     bash = {
