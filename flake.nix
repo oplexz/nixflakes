@@ -20,32 +20,30 @@
     self,
     nixpkgs,
     ...
-  } @ attrs: let
+  } @ inputs: let
     supportedSystems = ["x86_64-linux"];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
     nixpkgsFor = forAllSystems (system: import nixpkgs {inherit system;});
   in {
     nixosConfigurations = {
       gbu-pc3 = nixpkgs.lib.nixosSystem {
-        specialArgs =
-          {
-            username = "oplexz";
-            hostname = "gbu-pc3";
-            system = "x86_64-linux";
-          }
-          // attrs;
+        specialArgs = {
+          username = "oplexz";
+          hostname = "gbu-pc3";
+          system = "x86_64-linux";
+          inherit inputs;
+        };
         modules = [
           ./configuration.nix
         ];
       };
       aeschylus = nixpkgs.lib.nixosSystem {
-        specialArgs =
-          {
-            username = "oplexz";
-            hostname = "aeschylus";
-            system = "x86_64-linux";
-          }
-          // attrs;
+        specialArgs = {
+          username = "oplexz";
+          hostname = "aeschylus";
+          system = "x86_64-linux";
+          inherit inputs;
+        };
         modules = [
           ./configuration.nix
         ];
