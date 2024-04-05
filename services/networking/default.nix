@@ -1,4 +1,8 @@
-{hostname, ...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}: {
   services = {
     resolved = {
       enable = true;
@@ -17,6 +21,9 @@
     };
     hostName = hostname;
   };
-
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
+    };
+  };
 }
