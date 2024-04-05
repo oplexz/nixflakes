@@ -2,7 +2,7 @@
   imports = [
     ./keyring
     ./sound
-    ./networking
+    ./network
     ./greeter
   ];
 }
