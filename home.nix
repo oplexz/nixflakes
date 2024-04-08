@@ -501,52 +501,5 @@
           }
       '';
     };
-    home.packages = with pkgs; [
-      # LXQt and Xfce packages
-      lxqt.lxqt-policykit
-      xdg-utils
-      xfce.thunar
-      xfce.tumbler
-
-      # Audio and notification packages
-      brightnessctl
-      pulseaudio
-      pavucontrol
-      playerctl
-      mako
-      libnotify
-      tofi
-
-      # Screenshot and clipboard packages
-      grim
-      slurp
-      wl-clipboard-rs
-      inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
-
-      # Hypr-related packages
-      hyprlock
-      hypridle
-      # hyprpaper
-      inputs.hyprpicker.packages.${pkgs.system}.hyprpicker
-      swww
-
-      # Applications
-      google-chrome
-      telegram-desktop
-      vencord
-      pgadmin4-desktopmode
-      # todoist
-
-      # Nix-related packages
-      nil
-      alejandra
-
-      # Development packages
-      nodejs_21
-      python3
-
-      # Miscellaneous packages
-      nitch
-    ];
   };
 }
