@@ -9,7 +9,8 @@
     unzip
     wget
     jq
-    openvpn3
+    nmap
+    dig
   ];
 
   home-manager.users.${username} = _: {
