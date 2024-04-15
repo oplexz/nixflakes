@@ -13,30 +13,37 @@
       config = ''config /home/oplexz/ovpn/DIsakov.ovpn '';
       updateResolvConf = true;
     };
+
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
   };
 
   # region krb5
 
-  # security.krb5 = {
-  #   enable = true;
-  #   settings = {
-  #     libdefaults = {
-  #       default_realm = "GBUBR.LOCAL";
-  #       dns_lookup_realm = true;
-  #       dns_lookup_kdc = true;
-  #     };
-  #   };
-  # };
+  security.krb5 = {
+    enable = true;
+    settings = {
+      libdefaults = {
+        default_realm = "GBUBR.LOCAL";
+        dns_lookup_realm = true;
+        dns_lookup_kdc = true;
+      };
+    };
+  };
 
-  # systemd.services.kinit = {
-  #   description = "Kerberos ticket initialization";
-  #   wantedBy = ["multi-user.target"];
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     ExecStart = "${pkgs.krb5}/bin/kinit -k -t /home/oplexz/secrets/d.isakov.keytab d.isakov";
-  #     RemainAfterExit = "yes";
-  #   };
-  # };
+  systemd.services.kinit = {
+    description = "Kerberos ticket initialization";
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.krb5}/bin/kinit -k -t /home/oplexz/secrets/d.isakov.keytab d.isakov";
+      RemainAfterExit = "yes";
+    };
+  };
 
   # endregion
 
