@@ -55,8 +55,10 @@
       alejandra
 
       # Development packages
+      docker
       nodejs_21
       python3
+      pipenv
 
       # Miscellaneous packages
       nitch
